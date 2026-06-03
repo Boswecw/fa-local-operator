@@ -1,4 +1,4 @@
-# FA Local
+# FA Local Operator
 
 FA Local is the governed local execution boundary for Forge applications.
 
