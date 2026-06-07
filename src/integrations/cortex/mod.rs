@@ -18,6 +18,7 @@ pub struct CortexAdapter;
 pub enum GnatWorkerType {
     MarkdownSyntax,
     PlainTextSyntax,
+    PdfTextSyntax,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
@@ -123,6 +124,7 @@ impl GnatFaLocalCapabilityState {
             admitted_worker_types: vec![
                 GnatWorkerType::MarkdownSyntax,
                 GnatWorkerType::PlainTextSyntax,
+                GnatWorkerType::PdfTextSyntax,
             ],
             max_concurrency: 4,
             cancellation_supported: true,

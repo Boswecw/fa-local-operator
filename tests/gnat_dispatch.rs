@@ -127,6 +127,26 @@ fn cortex_cannot_claim_execution_routing_in_gnat_dispatch() {
 }
 
 #[test]
+fn ready_fa_local_admits_pdf_text_worker_when_requested() {
+    let mut envelope = load_basic_envelope();
+    envelope.required_capabilities.worker_types.push(GnatWorkerType::PdfTextSyntax);
+    envelope.plan.shards.push(fa_local::integrations::cortex::GnatDispatchShard {
+        shard_id: "gnat-run-fixture-001-shard-0002".to_owned(),
+        ordinal: 2,
+        worker_type: GnatWorkerType::PdfTextSyntax,
+        source_ref: "pdf-note".to_owned(),
+        source_fingerprint_digest: "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc".to_owned(),
+        deadline_ms: 30000,
+    });
+    envelope.plan.shard_count = 3;
+    let capabilities = GnatFaLocalCapabilityState::ready_default();
+
+    let admission = GnatDispatchValidator::negotiate(&envelope, &capabilities).unwrap();
+
+    assert!(admission.admitted_worker_types.contains(&GnatWorkerType::PdfTextSyntax));
+}
+
+#[test]
 fn unsupported_contract_version_denies_dispatch() {
     let mut envelope = load_basic_envelope();
     envelope
