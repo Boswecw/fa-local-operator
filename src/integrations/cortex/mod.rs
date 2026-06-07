@@ -20,6 +20,7 @@ pub enum GnatWorkerType {
     PlainTextSyntax,
     PdfTextSyntax,
     DocxTextSyntax,
+    RtfTextSyntax,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
@@ -127,6 +128,7 @@ impl GnatFaLocalCapabilityState {
                 GnatWorkerType::PlainTextSyntax,
                 GnatWorkerType::PdfTextSyntax,
                 GnatWorkerType::DocxTextSyntax,
+                GnatWorkerType::RtfTextSyntax,
             ],
             max_concurrency: 4,
             cancellation_supported: true,
